@@ -1,5 +1,6 @@
 import {parseArgs} from 'util'
 import chalk from 'chalk'
+import {printError} from './helpers'
 
 export function parseCliArgs() {
   let args
@@ -12,10 +13,10 @@ export function parseCliArgs() {
         version: {type: 'boolean', short: 'v'},
       },
       strict: true,
-      allowPositionals: false,
+      allowPositionals: true,
     })
   } catch (e: any) {
-    console.error(chalk.red(e.message))
+    printError(e.message)
     process.exit(1)
   }
 

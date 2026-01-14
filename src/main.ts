@@ -1,6 +1,7 @@
 #!/usr/bin/env bun
 import {parseCliArgs} from './cli'
 import {help, version} from './commands'
+import {printError, readCliFile, readCwdFile} from './helpers'
 import {ralphLoop} from './ralph-loop'
 
 async function main() {
@@ -15,8 +16,15 @@ async function main() {
     process.exit(0)
   }
 
-  const prompt = await Bun.file('./prompt.md').text()
   const maxIterations = parseInt(cli['max-iterations'] ?? '10')
+
+  const tasksExist = await readCwdFile('tasks.json').exists()
+  if (!tasksExist) {
+    printError('Error: tasks.json not found in the current directory.')
+    process.exit(1)
+  }
+
+  const prompt = await readCliFile('prompt.md').text()
   await ralphLoop({prompt, maxIterations})
 }
 

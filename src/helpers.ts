@@ -1,3 +1,4 @@
+import path from 'node:path'
 import chalk from 'chalk'
 
 /**
@@ -10,4 +11,16 @@ export function objectKeys<T extends {}>(object: T): Array<keyof T> {
 
 export function print(message: string) {
   console.info(chalk.blue(message))
+}
+
+export function printError(message: string) {
+  console.error(chalk.red(message))
+}
+
+export function readCliFile(filePath: string) {
+  return Bun.file(path.join(import.meta.dir, filePath))
+}
+
+export function readCwdFile(filePath: string) {
+  return Bun.file(path.join(process.cwd(), filePath))
 }

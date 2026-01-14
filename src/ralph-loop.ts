@@ -1,5 +1,4 @@
-import path from 'node:path'
-import {print} from './helpers'
+import {print, printError, readCwdFile} from './helpers'
 import type {Task} from './types'
 
 export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
@@ -26,14 +25,14 @@ export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
     const exitCode = await proc.exited
 
     if (exitCode !== 0) {
-      console.error(`Claude exited with code ${exitCode}`)
+      printError(`Claude exited with code ${exitCode}`)
       process.exit(exitCode)
     }
 
     print(result)
     print('')
 
-    const tasks = await Bun.file(path.join(process.cwd(), 'tasks.json')).json()
+    const tasks = await readCwdFile('tasks.json').json()
     const isEveryTaskComplete = (tasks as Task[]).every(
       (task) => task.passes === true,
     )
