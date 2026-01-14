@@ -135,7 +135,7 @@ Each criterion must be something Ralph can CHECK, not something vague.
   - May also include "non-goals"; things that are out of scope for this feature.
   - May include existing components to reuse.
   - For features that change UI, also include: "Verify changes work in browser"
-  - Always include as final criterion: "Typecheck passes"
+  - Always include as final criterion: "Ensure that all typecheck, test, and related lint npm scripts defined in package.json pass"
 
 ## Output
 

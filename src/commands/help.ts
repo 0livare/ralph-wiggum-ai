@@ -11,7 +11,16 @@ export function help() {
   // Commands
   console.info(`\n${chalk.bold('Subcommands:')}`)
   console.info(
-    `  ${chalk.cyan('prd')}                                Generate a prd.json file with sample task`,
+    `  ${chalk.cyan('prd')} <options>                     Generate a prd.json file`,
+  )
+  console.info(
+    `    ${chalk.cyan('--sample')}                       Generate sample prd.json file`,
+  )
+  console.info(
+    `    ${chalk.cyan('-m')}, ${chalk.cyan('--message')} <text>          Task description for interactive PRD generation`,
+  )
+  console.info(
+    `    ${chalk.cyan('-f')}, ${chalk.cyan('--file')} <path>             File containing task description`,
   )
 
   // Flags

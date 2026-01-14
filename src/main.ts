@@ -21,7 +21,7 @@ async function main() {
   // Check for subcommands
   const subcommand = cli.positionals[2] // argv[0] is bun, argv[1] is script path
   if (subcommand === 'prd') {
-    await prd()
+    await prd(cli.values)
     process.exit(0)
   }
 
