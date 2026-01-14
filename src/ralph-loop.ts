@@ -34,7 +34,7 @@ export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
 
     const tasks = await readCwdFile('prd.json').json()
     const isEveryTaskComplete = (tasks as Task[]).every(
-      (task) => task.passes === true,
+      (task) => task.complete === true,
     )
 
     // if (result.includes('<promise>COMPLETE</promise>')) {

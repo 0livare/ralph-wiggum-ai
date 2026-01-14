@@ -6,20 +6,33 @@ Opinionated implementation of the [Ralph Wiggum AI technique][ralph-article].
 
 ## Installation
 
-```bash
-# ralphwiggum depends on bun being installed globally
-npm i -g bun
+This package depends on Bun being installed globally. See the [bun install docs](https://bun.sh/docs/installation).
 
-# Creates a global `ralph` cli command
+```bash
+# After bun is installed...
+# Create a global `ralph` cli command
 npm i -g ralphwiggum
 ```
 
 ## Usage
 
-Run the `ralph` command
+Before setting Ralph to work, you need to create a PRD (product requirements document) `prd.json` file that defines the tasks for Ralph to perform.
 
 ```bash
-ralph [command] [flags]
+# Generate a sample prd.json file for you to edit
+ralph prd
+```
+
+> Feel free to modify the shape of the tasks, so long as the `complete` field remains as a boolean.
+>
+> This default PRD task shape was inspired by [this article](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) from Anthropic
+>
+> Using AI to iterate on this PRD file itself is a great way to bootstrap Ralph's work!
+
+Start the Ralph Wiggum loop:
+
+```bash
+ralph
 ```
 
 ### Flags
@@ -35,23 +48,6 @@ ralph [command] [flags]
 ```bash
 prd    Generate a prd.json file with sample task
 ```
-
-### Getting Started
-
-1. Generate a sample `prd.json` file:
-
-   ```bash
-   ralph prd
-   ```
-
-2. Edit the `prd.json` file to define your tasks
-
-3. Run the Ralph Wiggum loop:
-   ```bash
-   ralph
-   ```
-
-<!-- ## Examples -->
 
 ## Development
 

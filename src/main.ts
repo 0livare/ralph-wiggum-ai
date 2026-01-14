@@ -45,7 +45,7 @@ async function main() {
     process.exit(1)
   }
   const tasks = (await prdFile.json()) as Task[]
-  const incompleteTaskCount = tasks.filter((task) => !task.passes).length
+  const incompleteTaskCount = tasks.filter((task) => !task.complete).length
   print(`Found prd.json file with ${incompleteTaskCount} incomplete tasks.`)
 
   const prompt = await readCliFile('prompt.md').text()

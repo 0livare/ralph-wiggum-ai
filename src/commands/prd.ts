@@ -13,7 +13,7 @@ export async function prd() {
       'Add JWT token generation and validation',
       'Implement middleware for protected routes',
     ],
-    passes: false,
+    complete: false,
   }
 
   const prdData = [sampleTask]
