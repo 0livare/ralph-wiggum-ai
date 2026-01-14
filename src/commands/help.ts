@@ -5,16 +5,13 @@ export function help() {
   console.info('\n' + pkg.description + '\n')
 
   console.info(
-    `${chalk.bold('Usage:')} ${chalk.bold.green('in')} ${chalk.cyan('[flags]')} [...<pkg>]`,
+    `${chalk.bold('Usage:')} ${chalk.bold.green('ralph')} ${chalk.cyan('[flags]')}`,
   )
 
   // Flags
   console.info(`\n${chalk.bold('Flags:')}`)
   console.info(
-    `  ${chalk.cyan('-d')}, ${chalk.cyan('-D')}, ${chalk.cyan('--dev')}, ${chalk.cyan('--save-dev')}        Install pkg as a development dependency`,
-  )
-  console.info(
-    `  ${chalk.cyan('-z')}, ${chalk.cyan('--frozen')}, ${chalk.cyan('--frozen-lockfile')}  Disallow changes to lockfile`,
+    `  ${chalk.cyan('-i')}, ${chalk.cyan('--max-iterations')} <number>    Maximum number of iterations to run (default: 10)`,
   )
   console.info(
     `  ${chalk.cyan('-v')}, ${chalk.cyan('--version')}                    Print version number`,
@@ -24,25 +21,25 @@ export function help() {
   )
 
   // Examples
-  console.info(`\n${chalk.bold('Examples:')}`)
-  console.info(
-    chalk.bold.green('  in'),
-    '                   ',
-    chalk.gray('Install all project dependencies'),
-  )
-  console.info(
-    chalk.bold.green('  in express'),
-    '           ',
-    chalk.gray('Add a project dependency'),
-  )
-  console.info(
-    chalk.bold.green('  in --dev nodemon'),
-    '     ',
-    chalk.gray('Add a project development dependency'),
-  )
-  console.info(
-    chalk.bold.green('  in react immer axios'),
-    ' ',
-    chalk.gray('Add multiple project dependencies at once'),
-  )
+  // console.info(`\n${chalk.bold('Examples:')}`)
+  // console.info(
+  //   chalk.bold.green('  in'),
+  //   '                   ',
+  //   chalk.gray('Install all project dependencies'),
+  // )
+  // console.info(
+  //   chalk.bold.green('  in express'),
+  //   '           ',
+  //   chalk.gray('Add a project dependency'),
+  // )
+  // console.info(
+  //   chalk.bold.green('  in --dev nodemon'),
+  //   '     ',
+  //   chalk.gray('Add a project development dependency'),
+  // )
+  // console.info(
+  //   chalk.bold.green('  in react immer axios'),
+  //   ' ',
+  //   chalk.gray('Add multiple project dependencies at once'),
+  // )
 }
