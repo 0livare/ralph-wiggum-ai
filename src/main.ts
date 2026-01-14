@@ -2,8 +2,9 @@
 import chalk from 'chalk'
 import {parseCliArgs} from './cli'
 import {help, prd, version} from './commands'
-import {printError, readCliFile, readCwdFile} from './helpers'
+import {print, printError, readCliFile, readCwdFile} from './helpers'
 import {ralphLoop} from './ralph-loop'
+import type {Task} from './types'
 
 const DEFAULT_MAX_ITERATIONS = 10
 
@@ -38,11 +39,14 @@ async function main() {
     maxIterations = DEFAULT_MAX_ITERATIONS
   }
 
-  const prdExists = await readCwdFile('prd.json').exists()
-  if (!prdExists) {
+  const prdFile = readCwdFile('prd.json')
+  if (!(await prdFile.exists())) {
     printError('Error: prd.json not found in the current directory.')
     process.exit(1)
   }
+  const tasks = (await prdFile.json()) as Task[]
+  const incompleteTaskCount = tasks.filter((task) => !task.passes).length
+  print(`Found prd.json file with ${incompleteTaskCount} incomplete tasks.`)
 
   const prompt = await readCliFile('prompt.md').text()
   await ralphLoop({prompt: `@prd.json @progress.txt ${prompt}`, maxIterations})
