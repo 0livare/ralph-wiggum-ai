@@ -16,20 +16,42 @@ npm i -g ralphwiggum
 
 ## Usage
 
-Run the `ralph` command, optionally followed by dependencies you want to install.
+Run the `ralph` command
 
 ```bash
-ralph [flags]
+ralph [command] [flags]
 ```
+
+### Flags
 
 ```bash
-Flags:
-  -i, --max-iterations <number>    Maximum number of iterations to run (default: 10)
-  -v, --version                    Print version number
-  -h, --help                       Print help information
+-i, --max-iterations <number>    Maximum number of iterations to run (default: 10)
+-v, --version                    Print version number
+-h, --help                       Print help information
 ```
 
-## Examples
+### Subcommands
+
+```bash
+prd    Generate a prd.json file with sample task
+```
+
+### Getting Started
+
+1. Generate a sample `prd.json` file:
+
+   ```bash
+   ralph prd
+   ```
+
+2. Edit the `prd.json` file to define your tasks
+
+3. Run the Ralph Wiggum loop:
+   ```bash
+   ralph
+   ```
+
+<!-- ## Examples -->
 
 ## Development
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 import chalk from 'chalk'
 import {parseCliArgs} from './cli'
-import {help, version} from './commands'
+import {help, prd, version} from './commands'
 import {printError, readCliFile, readCwdFile} from './helpers'
 import {ralphLoop} from './ralph-loop'
 
@@ -10,17 +10,24 @@ const DEFAULT_MAX_ITERATIONS = 10
 async function main() {
   const cli = parseCliArgs()
 
-  if (cli.help) {
+  if (cli.values.help) {
     help()
     process.exit(0)
   }
-  if (cli.version) {
+  if (cli.values.version) {
     version()
     process.exit(0)
   }
 
-  let maxIterations = cli['max-iterations']
-    ? parseInt(cli['max-iterations'])
+  // Check for subcommands
+  const subcommand = cli.positionals[2] // argv[0] is bun, argv[1] is script path
+  if (subcommand === 'prd') {
+    await prd()
+    process.exit(0)
+  }
+
+  let maxIterations = cli.values['max-iterations']
+    ? parseInt(cli.values['max-iterations'])
     : null
   if (maxIterations === null) {
     console.info(

@@ -5,7 +5,13 @@ export function help() {
   console.info('\n' + pkg.description + '\n')
 
   console.info(
-    `${chalk.bold('Usage:')} ${chalk.bold.green('ralph')} ${chalk.cyan('[flags]')}`,
+    `${chalk.bold('Usage:')} ${chalk.bold.green('ralph')} ${chalk.cyan('[command]')} ${chalk.cyan('[flags]')}`,
+  )
+
+  // Commands
+  console.info(`\n${chalk.bold('Subcommands:')}`)
+  console.info(
+    `  ${chalk.cyan('prd')}                                Generate a prd.json file with sample task`,
   )
 
   // Flags

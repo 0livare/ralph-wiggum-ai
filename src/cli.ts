@@ -19,5 +19,8 @@ export function parseCliArgs() {
     process.exit(1)
   }
 
-  return args.values
+  return {
+    values: args.values,
+    positionals: args.positionals,
+  }
 }
