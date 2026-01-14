@@ -1,6 +1,6 @@
 import chalk from 'chalk'
-import type {Task} from '../types'
-import {printError} from '../helpers'
+import type {Task} from '../../types'
+import {printError} from '../../helpers'
 
 export async function prd() {
   const sampleTask: Task = {
@@ -13,6 +13,7 @@ export async function prd() {
       'Add JWT token generation and validation',
       'Implement middleware for protected routes',
     ],
+    started: false,
     complete: false,
   }
 

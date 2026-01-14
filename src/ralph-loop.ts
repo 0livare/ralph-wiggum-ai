@@ -30,7 +30,7 @@ export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
 
     // @ts-expect-error -- This is valid in Bun
     const claudeResponse = await proc.stdout.text()
-    console.info(chalk.gray(claudeResponse))
+    console.info(chalk.white(claudeResponse))
     printInfo('')
 
     const tasks = (await readCwdFile('prd.json').json()) as Task[]

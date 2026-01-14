@@ -10,7 +10,7 @@ export function objectKeys<T extends {}>(object: T): Array<keyof T> {
 }
 
 export function printInfo(message: string) {
-  console.info(chalk.blue(message))
+  console.info(chalk.blueBright(message))
 }
 
 export function printError(message: string) {

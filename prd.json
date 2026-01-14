@@ -1,0 +1,15 @@
+[
+  {
+    "category": "prd",
+    "description": "Create a version of the `ralph prd` command that uses Claude Code to generate an actual PRD instead of just creating a sample file",
+    "steps": [
+      "The `ralph prd` command should by itself continue to generate the existing sample file. ",
+      "`ralph prd` should accept a -m flag for giving a prompt inline ",
+      "and `ralph prd` should accept a -f or --file flag for reading an input file for the prompt",
+      "Provide claude with the prd/prd-prompt.md prompt followed by the users's task description",
+      "The questions that claude generates to ask about the specifics of the PRD should be presented to the user in the terminal and they should be able to respond, and those responses fed back to claude."
+    ],
+    "started": false,
+    "complete": false
+  }
+]
