@@ -1,0 +1,50 @@
+[
+  {
+    "category": "feature",
+    "description": "Create a version of the `ralph prd` command that uses Claude Code to generate an actual PRD instead of just creating a sample file",
+    "steps": [
+      "The `ralph prd` command should by itself continue to generate the existing sample file. ",
+      "`ralph prd` should accept a -m flag for giving a prompt inline ",
+      "and `ralph prd` should accept a -f or --file flag for reading an input file for the prompt",
+      "Provide claude with the prd/prd-prompt.md prompt followed by the users's task description",
+      "Run the command to ensure that it is interactive",
+      "Update the README.md with instructions on how to use the new functionality",
+      "Update the --help output of the `ralph` command to reflect the new flags and functionality",
+      "Update the --help output of the `ralph prd` command to reflect the new flags and functionality",
+      "Ensure that all typecheck, test, and related lint npm scripts defined in package.json pass"
+    ],
+    "started": true,
+    "complete": true
+  },
+  {
+    "category": "feature",
+    "description": "Clarifying questions must be interactive in the terminal",
+    "steps": [
+      "The clarifying questions that claude will generate with `ralph prd` must be presented interactively the user in the terminal and wait until they have responded, and those responses fed back to claude. The process must not complete until the user has answered the clarifying questions, and claude has generated the final PRD."
+    ],
+    "started": false,
+    "complete": true
+  },
+  {
+    "category": "feature",
+    "description": "Require input to `ralph prd`",
+    "steps": [
+      "Add a --sample flag to `ralph prd` that generates the sample prd.json file as it does today",
+      "Make it so that `ralph prd` without the --sample flag requires either a -m or --file flag to be provided, and errors if none of the 3 is given"
+    ],
+    "started": true,
+    "complete": true
+  },
+  {
+    "category": "feature",
+    "description": "Remove the specific `ralph prd --help` command and just have it be part of the main `ralph --help` output",
+    "started": true,
+    "complete": true
+  },
+  {
+    "category": "bug",
+    "description": "ralph prd -m 'Build a todo app' IS NOT INTERACTIVE. It spits out the clarifying questions and then exits without waiting for user input.",
+    "started": true,
+    "complete": true
+  }
+]

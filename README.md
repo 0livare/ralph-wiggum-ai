@@ -33,12 +33,32 @@ npm i -g ralph-wiggum-ai
 
 Before setting Ralph to work, you need to create a PRD (product requirements document) `prd.json` file that defines the tasks for Ralph to perform.
 
+You can generate a PRD in two ways:
+
+### Option 1: Generate a sample PRD to manually edit
+
 ```bash
 # Generate a sample prd.json file for you to edit
-ralph prd
+ralph prd --sample
 ```
 
-> Feel free to modify the shape of the tasks, so long as the `complete` field remains as a boolean.
+### Option 2: Generate a PRD interactively with Claude Code
+
+```bash
+# Provide task description inline
+ralph prd -m "Add a user dashboard with profile and settings"
+
+# Or read task description from a file
+ralph prd -f requirements.md
+```
+
+When using `-m` or `-f` flags, Claude Code will:
+
+1. Ask you clarifying questions about the feature
+2. Generate a comprehensive PRD based on your answers
+3. Create both `prd.json` and `progress.txt` files
+
+> Feel free to modify the shape of the tasks, so long as the `started` and `complete` fields remain as booleans.
 >
 > This default PRD task shape was inspired by [this article](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) from Anthropic
 >
@@ -62,7 +82,10 @@ ralph
 ### Subcommands
 
 ```bash
-prd    Generate a prd.json file with sample task
+prd <options>       Generate a prd.json file
+  --sample          Generate sample prd.json file
+  -m, --message <text>    Task description for interactive PRD generation
+  -f, --file <path>       File containing task description
 ```
 
 ## Development
