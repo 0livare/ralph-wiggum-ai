@@ -1,4 +1,6 @@
+import path from 'node:path'
 import {print} from './helpers'
+import type {Task} from './types'
 
 export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
   const {prompt, maxIterations} = args
@@ -31,7 +33,13 @@ export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
     print(result)
     print('')
 
-    if (result.includes('<promise>COMPLETE</promise>')) {
+    const tasks = await Bun.file(path.join(process.cwd(), 'tasks.json')).json()
+    const isEveryTaskComplete = (tasks as Task[]).every(
+      (task) => task.passes === true,
+    )
+
+    // if (result.includes('<promise>COMPLETE</promise>')) {
+    if (isEveryTaskComplete) {
       print('===========================================')
       print(`  All tasks complete after ${i} iterations!`)
       print('===========================================')
