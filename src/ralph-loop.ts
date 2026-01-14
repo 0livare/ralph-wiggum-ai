@@ -26,7 +26,8 @@ export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
 
     if (exitCode !== 0) {
       printError(`Claude exited with code ${exitCode}`)
-      process.exit(exitCode)
+      await Bun.sleep(2_000)
+      continue
     }
 
     print(result)
