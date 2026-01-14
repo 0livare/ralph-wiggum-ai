@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import {print, printError, readCwdFile} from './helpers'
 import type {Task} from './types'
 
@@ -20,26 +21,21 @@ export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
       },
     )
 
-    // @ts-expect-error -- This is valid in Bun
-    const result = await proc.stdout.text()
     const exitCode = await proc.exited
-
     if (exitCode !== 0) {
       printError(`Claude exited with code ${exitCode}`)
       await Bun.sleep(2_000)
       continue
     }
 
-    print(result)
+    // @ts-expect-error -- This is valid in Bun
+    const claudeResponse = await proc.stdout.text()
+    console.info(chalk.gray(claudeResponse))
     print('')
 
-    const tasks = await readCwdFile('prd.json').json()
-    const isEveryTaskComplete = (tasks as Task[]).every(
-      (task) => task.complete === true,
-    )
-
+    const tasks = (await readCwdFile('prd.json').json()) as Task[]
     // if (result.includes('<promise>COMPLETE</promise>')) {
-    if (isEveryTaskComplete) {
+    if (tasks.every((task) => task.complete)) {
       print('===============================================')
       print(`  All PRD tasks complete after ${i} iterations!`)
       print('===========================================')
