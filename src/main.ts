@@ -2,7 +2,7 @@
 import chalk from 'chalk'
 import {parseCliArgs} from './cli'
 import {help, prd, version} from './commands'
-import {print, printError, readCliFile, readCwdFile} from './helpers'
+import {printInfo, printError, readCliFile, readCwdFile} from './helpers'
 import {ralphLoop} from './ralph-loop'
 import type {Task} from './types'
 
@@ -46,7 +46,7 @@ async function main() {
   }
   const tasks = (await prdFile.json()) as Task[]
   const incompleteTaskCount = tasks.filter((task) => !task.complete).length
-  print(`Found prd.json file with ${incompleteTaskCount} incomplete tasks.`)
+  printInfo(`Found prd.json file with ${incompleteTaskCount} incomplete tasks.`)
 
   const prompt = await readCliFile('prompt.md').text()
   await ralphLoop({prompt: `@prd.json @progress.txt ${prompt}`, maxIterations})

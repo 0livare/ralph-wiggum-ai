@@ -1,17 +1,17 @@
 import chalk from 'chalk'
-import {print, printError, readCwdFile} from './helpers'
+import {printInfo, printError, readCwdFile} from './helpers'
 import type {Task} from './types'
 
 export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
   const {prompt, maxIterations} = args
 
-  print(`Starting Ralph`)
-  print('')
+  printInfo(`Starting Ralph`)
+  printInfo('')
 
   for (let i = 1; i <= maxIterations; i++) {
-    print('===========================================')
-    print(`  Iteration ${i} of ${maxIterations}`)
-    print('===========================================')
+    printInfo('===========================================')
+    printInfo(`  Iteration ${i} of ${maxIterations}`)
+    printInfo('===========================================')
 
     const proc = Bun.spawn(
       ['claude', '--dangerously-skip-permissions', '-p', prompt],
@@ -31,22 +31,22 @@ export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
     // @ts-expect-error -- This is valid in Bun
     const claudeResponse = await proc.stdout.text()
     console.info(chalk.gray(claudeResponse))
-    print('')
+    printInfo('')
 
     const tasks = (await readCwdFile('prd.json').json()) as Task[]
     // if (result.includes('<promise>COMPLETE</promise>')) {
     if (tasks.every((task) => task.complete)) {
-      print('===============================================')
-      print(`  All PRD tasks complete after ${i} iterations!`)
-      print('===========================================')
+      printInfo('===============================================')
+      printInfo(`  All PRD tasks complete after ${i} iterations!`)
+      printInfo('===========================================')
       process.exit(0)
     }
 
     await Bun.sleep(2_000)
   }
 
-  print('===========================================')
-  print(`  Reached max iterations (${maxIterations})`)
-  print('===========================================')
+  printInfo('===========================================')
+  printInfo(`  Reached max iterations (${maxIterations})`)
+  printInfo('===========================================')
   process.exit(1)
 }

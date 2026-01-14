@@ -9,7 +9,7 @@ export function objectKeys<T extends {}>(object: T): Array<keyof T> {
   return Object.keys(object) as Array<keyof T>
 }
 
-export function print(message: string) {
+export function printInfo(message: string) {
   console.info(chalk.blue(message))
 }
 
