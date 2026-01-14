@@ -16,7 +16,7 @@ Ralph solves the AI context window problem in the most simplistic way possible; 
 <!-- this is a webp that works on github but isn't appearing on npm -->
 <!-- ![ralph](https://github.com/user-attachments/assets/f8d33398-c996-4699-9dc6-4571bee76510) -->
 
-[ralph-article]: https://venturebeat.com/technology/how-ralph-wiggum-went-from-the-simpsons-to-the-biggest-name-in-ai-right-now?ref=ghuntley.com
+[ralph-article]: https://venturebeat.com/technology/how-ralph-wiggum-went-from-the-simpsons-to-the-biggest-name-in-ai-right-now
 [anthropic-plugin]: https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum
 [anthropic-plugin-core-concept]: https://github.com/anthropics/claude-code/blob/f860f671dc050ea42076dff34edc33871329f7ac/plugins/ralph-wiggum/README.md?plain=1#L22
 
@@ -34,18 +34,20 @@ npm i -g ralph-wiggum-ai
 
 ## Usage
 
+### Create a PRD file
+
 Before setting Ralph to work, you need to create a PRD (product requirements document) `prd.json` file that defines the tasks for Ralph to perform.
 
 You can generate a PRD in two ways:
 
-### Option 1: Generate a sample PRD to manually edit
+#### Option 1: Generate a sample PRD to manually edit
 
 ```bash
 # Generate a sample prd.json file for you to edit
 ralph prd --sample
 ```
 
-### Option 2: Generate a PRD interactively with Claude Code
+#### Option 2: Generate a PRD interactively with Claude Code
 
 ```bash
 # Provide task description inline
@@ -67,7 +69,7 @@ When using `-m` or `-f` flags, Claude Code will:
 >
 > Using AI to iterate on this PRD file itself is a great way to bootstrap Ralph's work!
 
-Start the Ralph Wiggum loop:
+### Start the Ralph Wiggum loop:
 
 ```bash
 ralph
