@@ -31,14 +31,14 @@ async function main() {
     maxIterations = DEFAULT_MAX_ITERATIONS
   }
 
-  const tasksExist = await readCwdFile('tasks.json').exists()
-  if (!tasksExist) {
-    printError('Error: tasks.json not found in the current directory.')
+  const prdExists = await readCwdFile('prd.json').exists()
+  if (!prdExists) {
+    printError('Error: prd.json not found in the current directory.')
     process.exit(1)
   }
 
   const prompt = await readCliFile('prompt.md').text()
-  await ralphLoop({prompt, maxIterations})
+  await ralphLoop({prompt: `@prd.json @progress.txt ${prompt}`, maxIterations})
 }
 
 await main()

@@ -4,7 +4,7 @@ import type {Task} from './types'
 export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
   const {prompt, maxIterations} = args
 
-  print(`Starting Ralph - Max ${maxIterations} iterations`)
+  print(`Starting Ralph`)
   print('')
 
   for (let i = 1; i <= maxIterations; i++) {
@@ -32,15 +32,15 @@ export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
     print(result)
     print('')
 
-    const tasks = await readCwdFile('tasks.json').json()
-    const isEveryTaskComplete = (tasks as Task[]).every(
+    const prd = await readCwdFile('prd.json').json()
+    const isEveryTaskComplete = (prd as Task[]).every(
       (task) => task.passes === true,
     )
 
     // if (result.includes('<promise>COMPLETE</promise>')) {
     if (isEveryTaskComplete) {
-      print('===========================================')
-      print(`  All tasks complete after ${i} iterations!`)
+      print('===============================================')
+      print(`  All PRD tasks complete after ${i} iterations!`)
       print('===========================================')
       process.exit(0)
     }
