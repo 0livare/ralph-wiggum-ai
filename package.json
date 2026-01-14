@@ -1,10 +1,10 @@
 {
-  "name": "ralphwiggum",
+  "name": "ralph-wiggum-ai",
   "version": "0.0.0",
   "description": "Opinionated implementation of the Ralph Wiggum AI technique",
   "author": "Zach Olivare <https://github.com/0livare>",
   "license": "ISC",
-  "repository": "https://github.com/0livare/ralphwiggum-ai",
+  "repository": "https://github.com/0livare/ralph-wiggum-ai",
   "bin": {
     "ralph": "src/main.ts"
   },

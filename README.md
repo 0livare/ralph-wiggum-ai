@@ -4,8 +4,6 @@ Opinionated implementation of the [Ralph Wiggum AI technique][ralph-article].
 
 ![ralph](https://github.com/user-attachments/assets/f8d33398-c996-4699-9dc6-4571bee76510)
 
-
-
 [ralph-article]: https://venturebeat.com/technology/how-ralph-wiggum-went-from-the-simpsons-to-the-biggest-name-in-ai-right-now?ref=ghuntley.com
 
 ## Installation
@@ -15,7 +13,7 @@ This package depends on Bun being installed globally. See the [bun install docs]
 ```bash
 # After bun is installed...
 # Create a global `ralph` cli command
-npm i -g ralphwiggum
+npm i -g ralph-wiggum-ai
 ```
 
 ## Usage
