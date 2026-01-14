@@ -1,5 +1,4 @@
 import {parseArgs} from 'util'
-import chalk from 'chalk'
 import {printError} from './helpers'
 
 export function parseCliArgs() {

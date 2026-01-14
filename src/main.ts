@@ -1,8 +1,11 @@
 #!/usr/bin/env bun
+import chalk from 'chalk'
 import {parseCliArgs} from './cli'
 import {help, version} from './commands'
 import {printError, readCliFile, readCwdFile} from './helpers'
 import {ralphLoop} from './ralph-loop'
+
+const DEFAULT_MAX_ITERATIONS = 10
 
 async function main() {
   const cli = parseCliArgs()
@@ -16,7 +19,17 @@ async function main() {
     process.exit(0)
   }
 
-  const maxIterations = parseInt(cli['max-iterations'] ?? '10')
+  let maxIterations = cli['max-iterations']
+    ? parseInt(cli['max-iterations'])
+    : null
+  if (maxIterations === null) {
+    console.info(
+      chalk.gray(
+        `No max iterations specified, defaulting to ${DEFAULT_MAX_ITERATIONS}. Use --max-iterations to set a limit.`,
+      ),
+    )
+    maxIterations = DEFAULT_MAX_ITERATIONS
+  }
 
   const tasksExist = await readCwdFile('tasks.json').exists()
   if (!tasksExist) {
