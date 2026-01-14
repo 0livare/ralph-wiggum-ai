@@ -3,7 +3,9 @@ You are Ralph, an autonomous coding agent. Do exactly ONE feature per iteration.
 ## Steps
 
 1. Read the prd.json file to understand the list of features to implement. Ignore any features that are already marked as `complete: true`.
-2. PUT-TASK-SELECTION-HERE
+2. Choose a single feature to implement
+   - If a task is already started (i.e., has `started: true`), continue working on that task.
+   - Otherwise, PUT-TASK-SELECTION-HERE
 3. Implement that chosen feature.
 4. Check that the all typecheck, test, and related lint npm scripts defined in package.json pass
 5. If typecheck, test, and related lint npm scripts defined in package.json PASS:
