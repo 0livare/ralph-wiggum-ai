@@ -5,7 +5,7 @@ import type {Task} from './types'
 export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
   const {prompt, maxIterations} = args
 
-  printInfo(`Starting Ralph`)
+  printInfo(`\nStarting Ralph`)
   printInfo('')
 
   for (let i = 1; i <= maxIterations; i++) {

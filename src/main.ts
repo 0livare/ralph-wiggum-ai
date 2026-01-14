@@ -6,8 +6,6 @@ import {printInfo, printError, readCliFile, readCwdFile} from './helpers'
 import {ralphLoop} from './ralph-loop'
 import type {Task} from './types'
 
-const DEFAULT_MAX_ITERATIONS = 10
-
 async function main() {
   const cli = parseCliArgs()
 
@@ -27,18 +25,9 @@ async function main() {
     process.exit(0)
   }
 
-  let maxIterations = cli.values['max-iterations']
-    ? parseInt(cli.values['max-iterations'])
-    : null
-  if (maxIterations === null) {
-    console.info(
-      chalk.gray(
-        `No max iterations specified, defaulting to ${DEFAULT_MAX_ITERATIONS}. Use --max-iterations to set a limit.`,
-      ),
-    )
-    maxIterations = DEFAULT_MAX_ITERATIONS
-  }
-
+  //
+  // PRD
+  //
   const prdFile = readCwdFile('prd.json')
   if (!(await prdFile.exists())) {
     printError('Error: prd.json not found in the current directory.')
@@ -46,8 +35,30 @@ async function main() {
   }
   const tasks = (await prdFile.json()) as Task[]
   const incompleteTaskCount = tasks.filter((task) => !task.complete).length
-  printInfo(`Found prd.json file with ${incompleteTaskCount} incomplete tasks.`)
+  printInfo(
+    chalk.gray(
+      `Found prd.json file with ${incompleteTaskCount} incomplete tasks.`,
+    ),
+  )
 
+  //
+  // MAX ITERATIONS
+  //
+  let maxIterations = cli.values['max-iterations']
+    ? parseInt(cli.values['max-iterations'])
+    : null
+  if (maxIterations === null) {
+    console.info(
+      chalk.gray(
+        `No max iterations specified, defaulting to 1.5 * task count. Use --max-iterations to set a limit.`,
+      ),
+    )
+    maxIterations = Math.ceil(incompleteTaskCount * 1.5)
+  }
+
+  //
+  // PROMPT
+  //
   let prompt = await readCliFile('prompt.md').text()
   prompt = '@prd.json @progress.txt ' + prompt
 
