@@ -2,9 +2,20 @@
 
 Opinionated implementation of the [Ralph Wiggum AI technique][ralph-article].
 
+Ralph solves the AI context window problem in the most simplistic way possible; keep feeding **_new_** AI sessions the same prompt until the job is done.
+
+> "Ralph is a Bash loop."
+> \- [Geoffrey Huntley](https://ghuntley.com/ralph)
+
+---
+
+> Anthropic's official [ralph plugin][anthropic-plugin] **gets the core principle of Ralph wrong** by [preventing a **single instance** of claude from exiting][anthropic-plugin-core-concept], rather than continuously starting new sessions.
+
 ![ralph](https://github.com/user-attachments/assets/f8d33398-c996-4699-9dc6-4571bee76510)
 
 [ralph-article]: https://venturebeat.com/technology/how-ralph-wiggum-went-from-the-simpsons-to-the-biggest-name-in-ai-right-now?ref=ghuntley.com
+[anthropic-plugin]: https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum
+[anthropic-plugin-core-concept]: https://github.com/anthropics/claude-code/blob/f860f671dc050ea42076dff34edc33871329f7ac/plugins/ralph-wiggum/README.md?plain=1#L22
 
 ## Installation
 
