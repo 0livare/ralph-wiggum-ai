@@ -11,7 +11,10 @@ Ralph solves the AI context window problem in the most simplistic way possible; 
 
 > Anthropic's official [ralph plugin][anthropic-plugin] **gets the core principle of Ralph wrong** by [preventing a **single instance** of claude from exiting][anthropic-plugin-core-concept], rather than continuously starting new sessions.
 
-![ralph](https://github.com/user-attachments/assets/f8d33398-c996-4699-9dc6-4571bee76510)
+<!-- See if png will will better on npm -->
+<img width="2816" height="1536" alt="ralph" src="https://github.com/user-attachments/assets/b72f5dc0-075f-4bf1-92d6-8fd14efdc917" />
+<!-- this is a webp that works on github but isn't appearing on npm -->
+<!-- ![ralph](https://github.com/user-attachments/assets/f8d33398-c996-4699-9dc6-4571bee76510) -->
 
 [ralph-article]: https://venturebeat.com/technology/how-ralph-wiggum-went-from-the-simpsons-to-the-biggest-name-in-ai-right-now?ref=ghuntley.com
 [anthropic-plugin]: https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum
