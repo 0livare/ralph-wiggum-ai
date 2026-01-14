@@ -8,6 +8,7 @@ export function parseCliArgs() {
       args: Bun.argv,
       options: {
         'max-iterations': {type: 'string', short: 'i'},
+        sequential: {type: 'boolean', short: 's'},
         help: {type: 'boolean', short: 'h'},
         version: {type: 'boolean', short: 'v'},
       },

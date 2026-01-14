@@ -41,6 +41,7 @@ ralph
 
 ```bash
 -i, --max-iterations <number>    Maximum number of iterations to run (default: 10)
+-s, --sequential                 Process tasks in sequential order instead of by priority
 -v, --version                    Print version number
 -h, --help                       Print help information
 ```

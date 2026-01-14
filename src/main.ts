@@ -48,8 +48,22 @@ async function main() {
   const incompleteTaskCount = tasks.filter((task) => !task.complete).length
   printInfo(`Found prd.json file with ${incompleteTaskCount} incomplete tasks.`)
 
-  const prompt = await readCliFile('prompt.md').text()
-  await ralphLoop({prompt: `@prd.json @progress.txt ${prompt}`, maxIterations})
+  let prompt = await readCliFile('prompt.md').text()
+  prompt = '@prd.json @progress.txt ' + prompt
+
+  if (cli.values.sequential) {
+    prompt = prompt.replace(
+      'PUT-TASK-SELECTION-HERE',
+      `Choose the next feature that is marked as \`complete: false\` to work on.`,
+    )
+  } else {
+    prompt = prompt.replace(
+      'PUT-TASK-SELECTION-HERE',
+      `Choose the highest-priority feature that is marked as \`complete: false\` to work on. This should be the one YOU decide has the highest priority - not necessarily the first`,
+    )
+  }
+
+  await ralphLoop({prompt, maxIterations})
 }
 
 await main()

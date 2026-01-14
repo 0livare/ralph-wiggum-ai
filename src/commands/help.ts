@@ -20,6 +20,9 @@ export function help() {
     `  ${chalk.cyan('-i')}, ${chalk.cyan('--max-iterations')} <number>    Maximum number of iterations to run (default: 10)`,
   )
   console.info(
+    `  ${chalk.cyan('-s')}, ${chalk.cyan('--sequential')}                 Process tasks in sequential order instead of by priority`,
+  )
+  console.info(
     `  ${chalk.cyan('-v')}, ${chalk.cyan('--version')}                    Print version number`,
   )
   console.info(
