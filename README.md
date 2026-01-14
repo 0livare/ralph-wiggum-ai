@@ -8,10 +8,12 @@ Opinionated implementation of the [Ralph Wiggum AI technique][ralph-article].
 
 ## Installation
 
-This package depends on Bun being installed globally. See the [bun install docs](https://bun.sh/docs/installation).
+> ### Prerequisites
+>
+> 1. This package depends on Bun being [installed globally](https://bun.sh/docs/installation)
+> 1. Claude Code must be must be [installed and configured](https://code.claude.com/docs/en/quickstart#step-1:-install-claude-code)
 
 ```bash
-# After bun is installed...
 # Create a global `ralph` cli command
 npm i -g ralph-wiggum-ai
 ```
