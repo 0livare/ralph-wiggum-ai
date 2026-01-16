@@ -35,7 +35,7 @@ export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
 
     const tasks = (await readCwdFile('prd.json').json()) as Task[]
     // if (result.includes('<promise>COMPLETE</promise>')) {
-    if (tasks.every((task) => task.complete)) {
+    if (tasks.filter(Boolean).every((task) => task.complete)) {
       printInfo('===============================================')
       printInfo(`  All PRD tasks complete after ${i} iterations!`)
       printInfo('===========================================')
