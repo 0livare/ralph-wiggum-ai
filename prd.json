@@ -1,50 +1,36 @@
 [
   {
-    "category": "feature",
-    "description": "Create a version of the `ralph prd` command that uses Claude Code to generate an actual PRD instead of just creating a sample file",
+    "category": "CLI Enhancement",
+    "description": "Update the --sample flag to generate a template with one example entry (the current authentication example) plus 4-6 additional blank entries. This provides users with a ready-to-fill template structure showing one complete example followed by empty placeholders.",
     "steps": [
-      "The `ralph prd` command should by itself continue to generate the existing sample file. ",
-      "`ralph prd` should accept a -m flag for giving a prompt inline ",
-      "and `ralph prd` should accept a -f or --file flag for reading an input file for the prompt",
-      "Provide claude with the prd/prd-prompt.md prompt followed by the users's task description",
-      "Run the command to ensure that it is interactive",
-      "Update the README.md with instructions on how to use the new functionality",
-      "Update the --help output of the `ralph` command to reflect the new flags and functionality",
-      "Update the --help output of the `ralph prd` command to reflect the new flags and functionality",
+      "Locate the generateSamplePrd() function in src/commands/prd/prd.ts:67-92",
+      "Keep the existing sampleTask object as the first entry in the array",
+      "Add 4-6 additional Task objects with empty/placeholder values",
+      "Each blank entry should have: empty category string, empty description string, empty steps array, started: false, complete: false",
+      "Ensure the generated JSON array is valid and properly formatted",
+      "Test the --sample flag by running 'ralph prd --sample' to verify it generates the expected output with 1 example + 4-6 blank entries",
       "Ensure that all typecheck, test, and related lint npm scripts defined in package.json pass"
     ],
     "started": true,
     "complete": true
   },
   {
-    "category": "feature",
-    "description": "Clarifying questions must be interactive in the terminal",
+    "category": "CLI Enhancement",
+    "description": "Add an --override flag that completely bypasses loading the initial prompt.md file, allowing users who have fully customized their prompts to skip the default prompt loading. This flag must be mutually exclusive with all other flags to prevent conflicts.",
     "steps": [
-      "The clarifying questions that claude will generate with `ralph prd` must be presented interactively the user in the terminal and wait until they have responded, and those responses fed back to claude. The process must not complete until the user has answered the clarifying questions, and claude has generated the final PRD."
+      "Add --override flag to the CLI argument parser in src/cli.ts:16 (after the 'sample' option)",
+      "Add --override as a boolean type option (no short form needed)",
+      "In src/main.ts, add validation logic after line 10 (after parseCliArgs()) to check if --override is used with other flags",
+      "If --override is combined with any other flag (help, version, max-iterations, sequential, message, file, sample), print an error message and exit with code 1",
+      "Modify the prompt loading logic in src/main.ts:62-75 to skip loading prompt.md entirely when --override is true",
+      "When --override is present, the prompt variable should only contain '@prd.json @progress.txt ' without loading the prompt.md file content",
+      "If prd.json already has content referencing an initial prompt, leave it as-is (don't modify the file, just don't use prompt.md in the current execution)",
+      "Add appropriate error message for invalid flag combinations: 'Error: --override cannot be used with other flags'",
+      "Test --override flag in isolation to verify it skips prompt loading correctly",
+      "Test --override with other flags (e.g., 'ralph --override -s') to verify mutual exclusivity error is shown",
+      "Ensure that all typecheck, test, and related lint npm scripts defined in package.json pass"
     ],
     "started": false,
-    "complete": true
-  },
-  {
-    "category": "feature",
-    "description": "Require input to `ralph prd`",
-    "steps": [
-      "Add a --sample flag to `ralph prd` that generates the sample prd.json file as it does today",
-      "Make it so that `ralph prd` without the --sample flag requires either a -m or --file flag to be provided, and errors if none of the 3 is given"
-    ],
-    "started": true,
-    "complete": true
-  },
-  {
-    "category": "feature",
-    "description": "Remove the specific `ralph prd --help` command and just have it be part of the main `ralph --help` output",
-    "started": true,
-    "complete": true
-  },
-  {
-    "category": "bug",
-    "description": "ralph prd -m 'Build a todo app' IS NOT INTERACTIVE. It spits out the clarifying questions and then exits without waiting for user input.",
-    "started": true,
-    "complete": true
+    "complete": false
   }
 ]

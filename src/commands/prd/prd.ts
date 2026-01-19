@@ -79,12 +79,30 @@ async function generateSamplePrd() {
     complete: false,
   }
 
-  const prdData = [sampleTask]
+  // Create blank template entries
+  const blankTask: Task = {
+    category: '',
+    description: '',
+    steps: [],
+    started: false,
+    complete: false,
+  }
+
+  const prdData = [
+    sampleTask,
+    {...blankTask},
+    {...blankTask},
+    {...blankTask},
+    {...blankTask},
+    {...blankTask},
+  ]
   const filePath = './prd.json'
 
   try {
     await Bun.write(filePath, JSON.stringify(prdData, null, 2))
-    console.info(chalk.green(`Created prd.json with sample task`))
+    console.info(
+      chalk.green(`Created prd.json with sample task and blank templates`),
+    )
   } catch (error) {
     printError('Error creating prd.json: ' + error)
     process.exit(1)
