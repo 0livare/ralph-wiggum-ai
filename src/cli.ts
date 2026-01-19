@@ -14,6 +14,7 @@ export function parseCliArgs() {
         message: {type: 'string', short: 'm'},
         file: {type: 'string', short: 'f'},
         sample: {type: 'boolean'},
+        override: {type: 'boolean'},
       },
       strict: true,
       allowPositionals: true,

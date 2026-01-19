@@ -10,4 +10,12 @@
 - Updated console message to reflect new behavior: "Created prd.json with sample task and blank templates"
 - All typecheck and lint scripts passed successfully
 
+### --override flag implementation (2026-01-19)
+- Added --override boolean flag to CLI parser in src/cli.ts:17
+- Implemented mutual exclusivity validation in src/main.ts:12-27 that prevents --override from being used with any other flag
+- Modified prompt loading logic in src/main.ts:80-81 to skip loading prompt.md when --override is true
+- When --override is present, prompt only contains '@prd.json @progress.txt ' without the prompt.md content
+- Verified mutual exclusivity works correctly: 'ralph --override -s' returns error as expected
+- All lint scripts (TypeScript + Prettier) passed successfully
+
 ---

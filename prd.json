@@ -30,7 +30,7 @@
       "Test --override with other flags (e.g., 'ralph --override -s') to verify mutual exclusivity error is shown",
       "Ensure that all typecheck, test, and related lint npm scripts defined in package.json pass"
     ],
-    "started": false,
-    "complete": false
+    "started": true,
+    "complete": true
   }
 ]

@@ -9,6 +9,23 @@ import type {Task} from './types'
 async function main() {
   const cli = parseCliArgs()
 
+  // Validate --override flag mutual exclusivity
+  if (cli.values.override) {
+    const otherFlags = [
+      cli.values.help,
+      cli.values.version,
+      cli.values['max-iterations'],
+      cli.values.sequential,
+      cli.values.message,
+      cli.values.file,
+      cli.values.sample,
+    ]
+    if (otherFlags.some((flag) => flag !== undefined)) {
+      printError('Error: --override cannot be used with other flags')
+      process.exit(1)
+    }
+  }
+
   if (cli.values.help) {
     help()
     process.exit(0)
@@ -59,19 +76,24 @@ async function main() {
   //
   // PROMPT
   //
-  let prompt = await readCliFile('prompt.md').text()
-  prompt = '@prd.json @progress.txt ' + prompt
-
-  if (cli.values.sequential) {
-    prompt = prompt.replace(
-      'PUT-TASK-SELECTION-HERE',
-      `Choose the next feature that is marked as \`complete: false\` to work on.`,
-    )
+  let prompt: string
+  if (cli.values.override) {
+    prompt = '@prd.json @progress.txt '
   } else {
-    prompt = prompt.replace(
-      'PUT-TASK-SELECTION-HERE',
-      `Choose the highest-priority feature that is marked as \`complete: false\` to work on. This should be the one YOU decide has the highest priority - not necessarily the first`,
-    )
+    prompt = await readCliFile('prompt.md').text()
+    prompt = '@prd.json @progress.txt ' + prompt
+
+    if (cli.values.sequential) {
+      prompt = prompt.replace(
+        'PUT-TASK-SELECTION-HERE',
+        `Choose the next feature that is marked as \`complete: false\` to work on.`,
+      )
+    } else {
+      prompt = prompt.replace(
+        'PUT-TASK-SELECTION-HERE',
+        `Choose the highest-priority feature that is marked as \`complete: false\` to work on. This should be the one YOU decide has the highest priority - not necessarily the first`,
+      )
+    }
   }
 
   await ralphLoop({prompt, maxIterations})
