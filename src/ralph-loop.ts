@@ -9,8 +9,13 @@ export async function ralphLoop(args: {prompt: string; maxIterations: number}) {
   printInfo('')
 
   for (let i = 1; i <= maxIterations; i++) {
+    const timestamp = new Date().toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    })
     printInfo('===========================================')
-    printInfo(`  Iteration ${i} of ${maxIterations}`)
+    printInfo(`  Iteration ${i} of ${maxIterations}  [${timestamp}]`)
     printInfo('===========================================')
 
     const proc = Bun.spawn(
